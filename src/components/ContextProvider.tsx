@@ -32,8 +32,6 @@ const AppContext = createContext<IAppContext>({
   setTransData: () => null
 })
 
-
-
 const ContextProvider: FC = ({ children }) => {
   const [source, setSource] = useState('')
   const [target, setTarget] = useState('')

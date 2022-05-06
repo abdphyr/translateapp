@@ -1,5 +1,4 @@
 
-
 export interface IResLang {
   languages: {
     language: string;

@@ -1,22 +1,28 @@
 import { useMutation } from "react-query";
-import axios, { AxiosResponse, AxiosError } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { IResTranslate } from ".";
+import { baseUrl, mainHeaders } from "./env";
 
-const options = (q: string, source: string, target: string) => ({
+interface ITransArg {
+  text: string,
+  source: string,
+  target: string
+}
+
+const options = ({ text, source, target }: ITransArg) => ({
   method: 'POST',
-  url: 'https://deep-translate1.p.rapidapi.com/language/translate/v2',
+  url: baseUrl,
   headers: {
     'content-type': 'application/json',
-    'X-RapidAPI-Host': 'deep-translate1.p.rapidapi.com',
-    'X-RapidAPI-Key': '9f49a1a611msh8a4ea366e39baf5p1be11ejsn0d40b8bf05c0'
+    ...mainHeaders
   },
-  data: `{"q":"${q}","source":"${source}","target":"${target}"}`
+  data: `{"q":"${text}","source":"${source}","target":"${target}"}`
 });
 
-const translate = ({ text, source, target }: { text: string, source: string, target: string }) => {
-  return axios.request<IResTranslate>(options(text, source, target))
+const translate = ({ text, source, target }: ITransArg) => {
+  return axios.request<IResTranslate>(options({ text, source, target }))
 }
 
 export const useTranslate = () => {
-  return useMutation(translate)
+  return useMutation<AxiosResponse<IResTranslate, any>, AxiosError, ITransArg>(translate)
 }

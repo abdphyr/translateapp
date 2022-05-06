@@ -74,7 +74,7 @@ const Header: FC = () => {
               component="div"
               sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
             >
-              Abd
+              Translate
             </Typography>
             <Search>
               <SearchIconWrapper>

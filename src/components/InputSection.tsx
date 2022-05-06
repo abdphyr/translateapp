@@ -1,6 +1,6 @@
 import { FC, useState, ChangeEvent } from 'react';
 import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid'
+import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography'
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
@@ -18,12 +18,13 @@ const InputSection: FC = () => {
   const [text, setText] = useState('')
 
   const { mutateAsync, isLoading } = useTranslate();
-  
+
   const handleText = (e: ChangeEvent<HTMLInputElement>) => {
     setText(e.target.value)
   }
   const handleSubmit = () => {
-    if (!text) {
+    if (!text || source.length === 0 || target.length === 0) {
+      alert("Enter text or select language ...")
       return;
     }
     if (result) {
@@ -46,6 +47,9 @@ const InputSection: FC = () => {
       onSuccess: (res) => {
         setTransData(res.data)
         setResult(true)
+      },
+      onError: (err) => {
+        alert(err.message)
       }
     })
   }

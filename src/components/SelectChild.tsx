@@ -17,7 +17,7 @@ const SelectChild: FC<ISelectProps> = (props) => {
     <Grid item xs={2} sm={4} md={6}>
       <Item>
         <Select
-          placeholder='Select language'
+          placeholder='Select...'
           onChange={(newValue, ActionMeta) => {
             if (newValue?.value) {
               setValue(newValue.value)

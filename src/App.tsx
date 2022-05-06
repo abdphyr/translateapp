@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC } from 'react';
+import './app.css';
+import 'rsuite/dist/rsuite.min.css';
+import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid'
+import Container from '@mui/material/Container';
+import SelectSection from './components/SelectSection';
+import HeaderSection from './components/HeaderSection';
+import InputSection from './components/InputSection';
+import OutputSection from './components/OutputSection';
+import Typography from '@mui/material/Typography'
 
-function App() {
+const App: FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <HeaderSection />
+      <Container>
+        <div className='app'>
+          <Box >
+            <Typography variant='h5' marginY={{ xs: 1, md: 3 }} component='h1' textAlign='center' >
+              Translate and enjoy !!! 😎
+            </Typography>
+            <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+              <SelectSection />
+              <InputSection />
+              <OutputSection />
+            </Grid>
+          </Box>
+        </div>
+      </Container>
+    </>
   );
 }
 
